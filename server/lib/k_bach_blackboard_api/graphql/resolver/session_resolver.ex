@@ -14,8 +14,8 @@ defmodule KBachBlackboardApi.Graphql.Resolver.SessionResolver do
   end
 
   defp authenticate(params) do
-    with {:ok, %Account{} = account} <- Accounts.get_account_by_email!(params.email),
-         true <- Argon2.verify_pass(params.passwotd, account.password_hash)
+    with %Account{} = account <- Accounts.get_account_by_email!(params.email),
+         true <- Argon2.verify_pass(params.password, account.password_hash)
     do
       {:ok, account}
     else

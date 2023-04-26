@@ -26,7 +26,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :k_bach_blackboard_api, KBachBlackboardApi,
+config :k_bach_blackboard_api, KBachBlackboardApiWeb.Guardian,
   issuer: "k_bach_blackboard_api",
   secret_key: "XnKXkzBpVeDew1FLTMK5Z29xEkdP8b3gDI+moClHL7+DPetGvDz1Kar5Rv4+a91Q"
 
