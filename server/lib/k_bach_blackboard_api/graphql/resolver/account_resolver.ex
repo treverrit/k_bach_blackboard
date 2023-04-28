@@ -1,13 +1,15 @@
 defmodule KBachBlackboardApi.Graphql.Resolver.AccountResolver do
   alias KBachBlackboardApi.Repo
-  alias KBachBlackboardApi.{Accounts, Users}
-  alias KBachBlackboardApi.{Accounts.Account, Users.User}
+  alias KBachBlackboardApi.{Accounts, Users, Headers, Imprints}
+  alias KBachBlackboardApi.{Accounts.Account, Users.User, Headers.Header, Imprints.Imprint}
 
-  def register(_, %{input: %{email: email, password: password, password_confirmation: confirmation}}, _) do
+  def register(_, %{input: %{email: email, password: password, password_confirmation: confirmation, name: name}}, _) do
     with {:ok, %Account{} = account} <- Accounts.create_account(%{email: email, password: password, password_confirmation: confirmation}),
-         {:ok, %User{}} <- Users.create_user(account, %{})
+         {:ok, %User{} = user} <- Users.create_user(account, %{}),
+         {:ok, %Header{}} <- Headers.create_header(user, %{name: name}),
+         {:ok, %Imprint{}} <- Imprints.create_imprint(user, %{})
     do
-      {:ok, account |> Repo.preload(:user)}
+      {:ok, account |> Repo.preload(user: [:header, :imprint])}
     else
       {:error, %Ecto.Changeset{} = changeset} -> {:error, errors(changeset.errors)}
     end

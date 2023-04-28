@@ -46,7 +46,9 @@ defmodule KBachBlackboardApi.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:guardian, "~> 2.3"},
       {:comeonin, "~> 5.3"},
-      {:argon2_elixir, "~> 3.1"}
+      {:argon2_elixir, "~> 3.1"},
+      {:waffle, "~> 1.1"},
+      {:waffle_ecto, "~> 0.0.12"}
     ]
   end
 

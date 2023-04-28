@@ -35,8 +35,8 @@ defmodule KBachBlackboardApi.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_account!(id), do: Repo.get!(Account, id)
-  def get_account_by_email!(email), do: Repo.get_by!(Account, email: email)
+  def get_account!(id), do: Repo.get!(Account, id) |> Repo.preload(user: [:header, :imprint])
+  def get_account_by_email!(email), do: Repo.get_by!(Account, email: email) |> Repo.preload(user: [:header, :imprint])
 
   @doc """
   Creates a account.

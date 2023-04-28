@@ -8,6 +8,7 @@ defmodule KBachBlackboardApi.Graphql.Types.AccountType do
   end
 
   input_object :account_input_type do
+    field :name, non_null(:string)
     field :email, non_null(:string)
     field :password, non_null(:string)
     field :password_confirmation, non_null(:string)

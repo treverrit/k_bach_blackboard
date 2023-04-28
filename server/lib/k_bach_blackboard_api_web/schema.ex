@@ -6,6 +6,8 @@ defmodule KBachBlackboardApiWeb.Schema do
   import_types(KBachBlackboardApi.Graphql.Types.AccountType)
   import_types(KBachBlackboardApi.Graphql.Types.SessionType)
   import_types(KBachBlackboardApi.Graphql.Types.UserType)
+  import_types(KBachBlackboardApi.Graphql.Types.HeaderType)
+  import_types(KBachBlackboardApi.Graphql.Types.ImprintType)
 
   query do
     @desc "greetings"

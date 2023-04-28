@@ -6,6 +6,8 @@ defmodule KBachBlackboardApi.Users.User do
   @foreign_key_type :binary_id
   schema "users" do
     field :bio, :string
+    has_one :header, KBachBlackboardApi.Headers.Header
+    has_one :imprint, KBachBlackboardApi.Imprints.Imprint
     belongs_to :account, KBachBlackboardApi.Accounts.Account
 
     timestamps()
